@@ -1,0 +1,7 @@
+# Hello Cytoskeleton C++ Playground Project
+#
+# This project uses unified configuration from EROS Forge
+# Common configuration is located at: ../../forge/bazel/bazelrc
+
+# Import EROS Forge unified configuration
+try-import %workspace%/../../forge/bazel/bazelrc

@@ -1,0 +1,23 @@
+module(
+    name = "hello_cytoskeleton_cpp",
+    version = "0.1.0",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "platforms", version = "1.0.0")
+
+# EROS Forge - Unified toolchain and build configuration
+# Toolchains are automatically registered by eros_forge module
+bazel_dep(name = "eros_forge")
+local_path_override(
+    module_name = "eros_forge",
+    path = "../../forge",
+)
+
+# Dependency on cytoskeleton for message queue functionality
+bazel_dep(name = "cytoskeleton")
+local_path_override(
+    module_name = "cytoskeleton",
+    path = "../../cytoskeleton/cytoskeleton-cpp",
+)
