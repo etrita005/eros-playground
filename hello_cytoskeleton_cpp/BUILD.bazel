@@ -1,4 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_pkg//pkg:deb.bzl", "pkg_deb")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 cc_binary(
     name = "hello_cytoskeleton",
@@ -6,4 +8,63 @@ cc_binary(
     deps = [
         "@cytoskeleton//include/cytoskeleton/itc/message_queue:message_queue",
     ],
+)
+
+# ============================================================
+# Debian Package Build Rules
+# ============================================================
+
+# Package the binary
+pkg_tar(
+    name = "hello_cytoskeleton_data",
+    srcs = [":hello_cytoskeleton"],
+    extension = "tar.gz",
+    package_dir = "/opt/eros/bin",
+    visibility = ["//visibility:private"],
+)
+
+# Generate version file for deb package
+genrule(
+    name = "deb_version",
+    outs = ["deb_version.txt"],
+    cmd = "bash -c 'if [ -n \"\"\"$${DEB_VERSION}\"\"\" ]; then echo \"\"\"$${DEB_VERSION}\"\"\"; else echo \"0.1.0\"; fi' > $@",
+    visibility = ["//visibility:private"],
+)
+
+# amd64 deb package
+pkg_deb(
+    name = "hello_cytoskeleton_deb_amd64",
+    architecture = "amd64",
+    built_using = "bazel",
+    data = ":hello_cytoskeleton_data",
+    depends = [
+        "cytoskeleton-cpp",
+    ],
+    description = "Hello Cytoskeleton C++ - Example program using cytoskeleton library",
+    homepage = "https://example.com",
+    maintainer = "EROS Team <team@example.com>",
+    package = "hello-cytoskeleton-cpp",
+    version_file = ":deb_version",
+    section = "utils",
+    priority = "optional",
+    visibility = ["//visibility:public"],
+)
+
+# arm64 deb package
+pkg_deb(
+    name = "hello_cytoskeleton_deb_arm64",
+    architecture = "arm64",
+    built_using = "bazel",
+    data = ":hello_cytoskeleton_data",
+    depends = [
+        "cytoskeleton-cpp",
+    ],
+    description = "Hello Cytoskeleton C++ - Example program using cytoskeleton library",
+    homepage = "https://example.com",
+    maintainer = "EROS Team <team@example.com>",
+    package = "hello-cytoskeleton-cpp",
+    version_file = ":deb_version",
+    section = "utils",
+    priority = "optional",
+    visibility = ["//visibility:public"],
 )
