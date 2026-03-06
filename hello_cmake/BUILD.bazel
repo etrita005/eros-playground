@@ -1,0 +1,17 @@
+load("@rules_foreign_cc//foreign_cc:cmake.bzl", "cmake")
+
+filegroup(
+    name = "src_files",
+    srcs = glob(["*.cpp", "CMakeLists.txt"]),
+    visibility = ["//visibility:private"],
+)
+
+cmake(
+    name = "hello_world_cmake",
+    lib_source = ":src_files",
+    out_binaries = ["hello_cmake"],
+    cache_entries = {
+        "CMAKE_BUILD_TYPE": "Release",
+    },
+    visibility = ["//visibility:public"],
+)
