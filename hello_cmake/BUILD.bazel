@@ -6,12 +6,43 @@ filegroup(
     visibility = ["//visibility:private"],
 )
 
+# Native x86_64 build
 cmake(
-    name = "hello_world_cmake",
+    name = "hello_world_cmake_x86_64",
     lib_source = ":src_files",
     out_binaries = ["hello_cmake"],
     cache_entries = {
         "CMAKE_BUILD_TYPE": "Release",
     },
+    visibility = ["//visibility:public"],
+    tags = ["manual"],
+)
+
+# Cross-compilation for ARM64
+cmake(
+    name = "hello_world_cmake_arm64",
+    lib_source = ":src_files",
+    out_binaries = ["hello_cmake"],
+    cache_entries = {
+        "CMAKE_BUILD_TYPE": "Release",
+        # Skip compiler tests for cross-compilation
+        "CMAKE_C_COMPILER_WORKS": "YES",
+        "CMAKE_CXX_COMPILER_WORKS": "YES",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        # Use -B flag to ensure GCC finds the correct assembler and linker
+        "CMAKE_CXX_FLAGS": "-B/usr/bin/aarch64-linux-gnu-",
+        "CMAKE_C_FLAGS": "-B/usr/bin/aarch64-linux-gnu-",
+    },
+    visibility = ["//visibility:public"],
+    tags = ["manual"],
+)
+
+# Alias that selects the appropriate target based on configuration
+alias(
+    name = "hello_world_cmake",
+    actual = select({
+        "@platforms//cpu:arm64": ":hello_world_cmake_arm64",
+        "//conditions:default": ":hello_world_cmake_x86_64",
+    }),
     visibility = ["//visibility:public"],
 )
