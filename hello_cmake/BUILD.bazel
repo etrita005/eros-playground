@@ -10,8 +10,9 @@ cmake_forge(
     name = "hello_world_cmake",
     lib_source = ":src_files",
     out_binaries = ["hello_cmake"],
-    cache_entries = {
-        "CMAKE_BUILD_TYPE": "Release",
-    },
+    # CMAKE_BUILD_TYPE 会自动根据 Bazel 配置设置：
+    # --config=release -> Release (默认)
+    # --config=debug -> Debug
+    # 也可以手动覆盖：cache_entries = {"CMAKE_BUILD_TYPE": "RelWithDebInfo"}
     visibility = ["//visibility:public"],
 )
