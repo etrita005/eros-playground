@@ -1,2 +1,1 @@
-# Import EROS Forge configurations
 try-import %workspace%/../../forge/bazel/bazelrc
