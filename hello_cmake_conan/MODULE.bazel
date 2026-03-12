@@ -7,7 +7,6 @@ module(
 # Dependencies
 bazel_dep(name = "rules_cc", version = "0.2.14")
 bazel_dep(name = "platforms", version = "1.0.0")
-bazel_dep(name = "rules_foreign_cc", version = "0.15.1")
 
 # EROS Forge for toolchain configurations
 local_path_override(

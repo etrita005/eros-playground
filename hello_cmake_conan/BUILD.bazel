@@ -5,7 +5,11 @@ cmake_conan_forge(
     name = "hello",
     conanfile = "conanfile.txt",
     cmake_lists = "CMakeLists.txt",
-    srcs = ["main.cpp"],
+    srcs = [
+        "main.cpp",
+        "mylib.cpp",
+        "mylib.h",
+    ],
     target_name = "hello",
     visibility = ["//visibility:public"],
 )

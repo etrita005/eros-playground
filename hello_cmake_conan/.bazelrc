@@ -1,6 +1,2 @@
 # Import EROS Forge configuration
 try-import %workspace%/../../forge/bazel/bazelrc
-
-# Project-specific settings
-build --cxxopt=-std=c++17
-build --host_cxxopt=-std=c++17
