@@ -1,0 +1,11 @@
+load("@eros_forge//bazel:cmake_conan_forge.bzl", "cmake_conan_forge")
+
+# Build hello_cmake_conan using CMake + Conan with Bazel toolchain integration
+cmake_conan_forge(
+    name = "hello",
+    conanfile = "conanfile.txt",
+    cmake_lists = "CMakeLists.txt",
+    srcs = ["main.cpp"],
+    target_name = "hello",
+    visibility = ["//visibility:public"],
+)
