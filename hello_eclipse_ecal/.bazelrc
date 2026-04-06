@@ -1,8 +1,1 @@
 import %workspace%/../../forge/bazel/bazelrc
-
-build:linux_arm64 --cpu=aarch64
-build:linux_arm64 --host_cpu=aarch64
-
-build:linux_arm64_cross_arm64 --cpu=aarch64
-build:linux_arm64_cross_arm64 --host_cpu=x86_64
-build:linux_arm64_cross_arm64 --crosstool_top=@eros_forge//bazel/toolchain:linux_arm64
