@@ -1,0 +1,19 @@
+module(
+    name = "hello_eclipse_ecal",
+    version = "1.0.0",
+)
+
+bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "eros_forge", version = "0.1.0")
+bazel_dep(name = "eclipse_ecal_vendor")
+
+local_path_override(
+    module_name = "eros_forge",
+    path = "../../forge",
+)
+
+local_path_override(
+    module_name = "eclipse_ecal_vendor",
+    path = "../../thirdparty/eclipse-ecal-vendor",
+)
