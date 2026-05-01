@@ -1,0 +1,20 @@
+module(
+    name = "hello_sdbus_cpp",
+    version = "1.0.0",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "platforms", version = "1.0.0")
+
+bazel_dep(name = "eros_forge")
+local_path_override(
+    module_name = "eros_forge",
+    path = "../../forge",
+)
+
+bazel_dep(name = "sdbus_cpp_vendor")
+local_path_override(
+    module_name = "sdbus_cpp_vendor",
+    path = "../../thirdparty/sdbus-cpp-vendor",
+)

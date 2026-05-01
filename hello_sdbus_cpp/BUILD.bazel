@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+_SDBUS_CPP_DEPS = ["@sdbus_cpp_vendor//:sdbus_cpp"]
+cc_binary(
+    name = "hello_sdbus_server",
+    srcs = ["src/server.cpp", "src/common.h"],
+    deps = _SDBUS_CPP_DEPS,
+)
+
+cc_binary(
+    name = "hello_sdbus_client",
+    srcs = ["src/client.cpp", "src/common.h"],
+    deps = _SDBUS_CPP_DEPS,
+)
+
+cc_binary(
+    name = "hello_sdbus_introspect",
+    srcs = ["src/introspect.cpp", "src/common.h"],
+    deps = _SDBUS_CPP_DEPS,
+)
+
+cc_binary(
+    name = "hello_sdbus_signal_sender",
+    srcs = ["src/signal_sender.cpp", "src/common.h"],
+    deps = _SDBUS_CPP_DEPS,
+)
+
+cc_binary(
+    name = "hello_sdbus_signal_receiver",
+    srcs = ["src/signal_receiver.cpp", "src/common.h"],
+    deps = _SDBUS_CPP_DEPS,
+)

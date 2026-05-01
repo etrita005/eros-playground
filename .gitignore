@@ -35,3 +35,27 @@ coverage/
 # Compile commands (generated)
 compile_commands.json
 generate_compile_commands.py
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+build/
+cmake-build-*/
+
+# Conan generated files
+CMakePresets.json
+CMakeUserPresets.json
+ConanPresets.json
+conan_toolchain.cmake
+conanbuild.sh
+conanbuildenv-*.sh
+conanrun.sh
+conanrunenv-*.sh
+deactivate_conanbuild.sh
+deactivate_conanrun.sh
+conan_*.cmake
+conandeps_legacy.cmake
+cmakedeps_macros.cmake
+*.pc
