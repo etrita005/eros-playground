@@ -14,7 +14,9 @@ find_package(OpenCV REQUIRED)
 add_executable(hello_opencv main.cpp)
 target_link_libraries(hello_opencv PRIVATE opencv_core opencv_imgproc opencv_imgcodecs opencv_highgui)
 
-# Install rules
-install(TARGETS hello_opencv
+add_executable(bench_harris bench_harris.cpp)
+target_link_libraries(bench_harris PRIVATE opencv_core opencv_imgproc opencv_imgcodecs opencv_highgui)
+
+install(TARGETS hello_opencv bench_harris
     RUNTIME DESTINATION bin
 )

@@ -10,3 +10,14 @@ cmake_conan_forge(
     target_name = "hello_opencv",
     visibility = ["//visibility:public"],
 )
+
+cmake_conan_forge(
+    name = "bench_harris",
+    conanfile = "conanfile.txt",
+    cmake_lists = "CMakeLists.txt",
+    srcs = [
+        "bench_harris.cpp",
+    ],
+    target_name = "bench_harris",
+    visibility = ["//visibility:public"],
+)
