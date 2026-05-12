@@ -1,0 +1,17 @@
+module(
+    name = "hello_opencv",
+    version = "1.0.0",
+    compatibility_level = 1,
+)
+
+# Dependencies
+bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "platforms", version = "1.0.0")
+
+# EROS Forge for toolchain configurations
+local_path_override(
+    module_name = "eros_forge",
+    path = "../../forge",
+)
+
+bazel_dep(name = "eros_forge", version = "0.1.0")
